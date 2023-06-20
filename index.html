@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classynerd</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- gsap script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+    <!-- tweenmax script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="site-logo">Catscradle</div>
+        <div class="navbar">
+            <div class="site-info">photos / films</div>
+            <div class="site-menu">
+                <div class="menu-item">Projects</div>
+                <div class="menu-item">About</div>
+                <div class="menu-item">Contact</div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="header-left">
+                elevated<br /><span>reality</span>
+                <div class="link"><a href="#">view showreel</a></div>
+            </div>
+            <div class="header-right">/all Projects</div>
+        </div>
+        <div class="container">
+            <div class="container-items">
+                <div class="container-img-wrap">
+                    <div class="container-img"></div>
+                </div>
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\ali-choubin-Jo6SUR3jdL8-unsplash.jpg">
+                        <h3>1</h3>
+                    </a>
+                </div>
+
+                
+
+                <div class="item">
+                    
+                    <a href="#" class="container-items" data-img="images\axp-photography-SXJwn4239Eo-unsplash.jpg">
+                        <h3>2</h3>
+                    </a>
+                
+                </div>
+            
+            
+
+                <div class="item">
+                    
+                    <a href="#" class="container-items" data-img="images\axp-photography-zZPSazI1tsQ-unsplash.jpg">
+                        <h3>3</h3>
+                    </a>
+                </div>
+            
+            
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\bro-takes-photos-ug6dJsPvT5g-unsplash.jpg">
+                        <h3>4</h3>
+                    </a>
+                </div>
+
+
+
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\dima-junglist-PMMhTGE1VfA-unsplash.jpg">
+                        <h3>5</h3>
+                    </a>
+                </div>
+
+
+
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\geraltyichen-2KheN10Uqdo-unsplash.jpg">
+                        <h3>6</h3>
+                    </a>
+                </div>
+
+
+
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\ilia-bronskiy-MvWt7GPv-JY-unsplash.jpg">
+                        <h3>7</h3>
+                    </a>
+                </div>
+
+
+
+
+                <div class="item">
+                    <a href="#" class="container-items" data-img="images\ivan-rohovchenko-r3XpW3Vxzrc-unsplash.jpg">
+                        <h3>8</h3>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const allcontainer = gsap.utils.toArray(".container-item");
+    const venueImageWrap = document.querySelector(".container-img-wrap");
+    const venueImage = document.querySelector(".container-img");
+
+    function initContainer() {
+      allcontainer.forEach((link) => {
+        link.addEventListener("mouseenter", venueHover);
+        link.addEventListener("mouseleave", venueHover);
+        link.addEventListener("mousemove", moveVenueImage);    
+    });
+}
+
+    function moveVenueImage(e) {
+        let xpos = e.clientX;
+        let ypos = e.clientY;
+        const tl = gsap.timeline();
+        tl.to(venueImageWrap, {
+            x: xpos,
+            y: ypos,
+        });
+    }
+
+
+    function venueHover(e) {
+        if(e.type === "mouseenter") {
+            const targetImage = e.target.dataset.img;
+
+            const tl = gsap.timeline();
+            tl.set(venueImage, {
+                backgroundImage: `url(${targetImage})`
+            }).to(venueImageWrap, {
+                duration: 0.5,
+                autoAlpha: 0,
+            });
+        }else if(e.type === "mouseleave") {
+            const tl = gsap.timeline();
+            tl.to(venueImageWrap, {
+                duration: 0.5,
+                autoAlpha: 0,
+        })
+    }
+
+}
+
+        function init() {
+            initContainer();
+        }
+    </script>
+</html>
