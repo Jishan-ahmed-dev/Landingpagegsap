@@ -104,16 +104,19 @@
 </body>
 <script>
     const allcontainer = gsap.utils.toArray(".container-items");
-    const venueImageWrap = document.querySelector(".container-img-wrap");
-    const venueImage = document.querySelector(".container-img");
+    const venueImageWrap = document.querySelector('.container-items .container-img-wrap');
+    const venueImage = document.querySelector('.container-items .container-img');
+
 
     function initContainer() {
-      allcontainer.forEach((link) => {
-        link.addEventListener("mouseenter", venueHover);
-        link.addEventListener("mouseleave", venueHover);
-        link.addEventListener("mousemove", moveVenueImage);    
-    });
+  const items = document.querySelectorAll('.item');
+  items.forEach((item) => {
+    item.addEventListener('mouseenter', venueHover);
+    item.addEventListener('mouseleave', venueHover);
+    item.addEventListener('mousemove', moveVenueImage);
+  });
 }
+
 
     function moveVenueImage(e) {
         let xpos = e.clientX;
